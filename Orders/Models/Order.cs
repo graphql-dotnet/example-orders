@@ -25,8 +25,37 @@ namespace Orders.Models
 
         public void Start()
         {
+            if (Status != OrderStatuses.CREATED) {
+                throw new InvalidOperationException(string.Format("Order: {0} cannot be started", Id));
+            }
             Status = OrderStatuses.PROCESSING;
         }
+
+        public void Complete() {
+            if (Status != OrderStatuses.PROCESSING) {
+                throw new InvalidOperationException(string.Format("Order: {0} cannot be completed", Id));
+            }
+
+            Status = OrderStatuses.COMPLETED;
+        }
+
+        public void Cancel() {
+            if (Status == OrderStatuses.CANCELLED || Status == OrderStatuses.CLOSED || Status == OrderStatuses.COMPLETED) {
+                throw new InvalidOperationException(string.Format("Order: {0} cannot be cancelled", Id));
+            }
+            
+            Status = OrderStatuses.CANCELLED;
+        }
+
+        public void Close() {
+            if (Status != OrderStatuses.COMPLETED) {
+                throw new InvalidOperationException(string.Format("Order: {0} cannot be closed", Id));
+            }
+
+            Status = OrderStatuses.CLOSED;
+        }
+
+        
     }
 
     [Flags]

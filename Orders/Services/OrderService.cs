@@ -71,6 +71,33 @@ namespace Orders.Services
             _events.AddEvent(orderEvent);
             return Task.FromResult(order);
         }
+
+        public Task<Order> CompleteAsync(string orderId)
+        {
+            var order = GetById(orderId);
+            order.Complete();
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.COMPLETED, DateTime.Now);
+            _events.AddEvent(orderEvent);
+            return Task.FromResult(order);
+        }
+
+        public Task<Order> CancelAsync(string orderId)
+        {
+            var order = GetById(orderId);
+            order.Cancel();
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.CANCELLED, DateTime.Now);
+            _events.AddEvent(orderEvent);
+            return Task.FromResult(order);
+        }
+
+        public Task<Order> CloseAsync(string orderId)
+        {
+            var order = GetById(orderId);
+            order.Close();
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.CLOSED, DateTime.Now);
+            _events.AddEvent(orderEvent);
+            return Task.FromResult(order);
+        }
     }
 
     public interface IOrderService
@@ -79,5 +106,8 @@ namespace Orders.Services
         Task<IEnumerable<Order>> GetOrdersAsync();
         Task<Order> CreateAsync(Order order);
         Task<Order> StartAsync(string orderId);
+        Task<Order> CompleteAsync(string orderId);
+        Task<Order> CancelAsync(string orderId);
+        Task<Order> CloseAsync(string orderId);
     }
 }

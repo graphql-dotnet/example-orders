@@ -36,6 +36,41 @@ namespace Orders.Schema
                         async c => await orders.StartAsync(orderId));
                 }
             );
+
+            FieldAsync<OrderType>(
+                "completeOrder",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }),
+                resolve: async context =>
+                {
+                    var orderId = context.GetArgument<string>("orderId");
+                    return await context.TryAsyncResolve(
+                        async c => await orders.CompleteAsync(orderId));
+                }
+            );
+
+            FieldAsync<OrderType>(
+                "cancelOrder",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }),
+                resolve: async context =>
+                {
+                    var orderId = context.GetArgument<string>("orderId");
+                    return await context.TryAsyncResolve(
+                        async c => await orders.CancelAsync(orderId));
+                }
+            );
+
+            FieldAsync<OrderType>(
+                "closeOrder",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }),
+                resolve: async context =>
+                {
+                    var orderId = context.GetArgument<string>("orderId");
+                    return await context.TryAsyncResolve(
+                        async c => await orders.CloseAsync(orderId));
+                }
+            );
+
+
         }
     }
 }
