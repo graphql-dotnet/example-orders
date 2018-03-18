@@ -176,9 +176,9 @@ subscription startedEvent {
 ## Solution Structure
 * Server - Contains the GraphQL Server / wires up GraphQL.NET middleware
 * Orders - Contains models and the GraphQL Schema
-** Models - Contains the underlying models which drive the schema
-** Services - Contains data services for retrieving and updating models, as well as for notifications. Services are registered with the ASP.NET Core container allowing them to be injected wherever need.
-** Schema - Contains the GraphQL types, queries, mutuations and subscriptions.
+  * Models - Contains the underlying models which drive the schema
+  * Services - Contains data services for retrieving and updating models, as well as for notifications. Services are registered with the ASP.NET Core container allowing them to be injected wherever need.
+  * Schema - Contains the GraphQL types, queries, mutuations and subscriptions.
 
 ## License
 Apache 2.0
