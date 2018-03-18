@@ -162,7 +162,7 @@ subscription createdEvent {
 }
 ```
 
-example subscribing to order that are started
+example subscribing to order started events
 ```
 subscription startedEvent {
   orderEvent ([PROCESSING]) {
