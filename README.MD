@@ -67,7 +67,7 @@ example:
 ```
 mutation createOrder{
   createOrder(order:
-	{
+    {
       name:"Glenn",
       description:"Test",
       customerId: 1,
