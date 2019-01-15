@@ -49,7 +49,8 @@ namespace Server
                 options.EnableMetrics = true;
                 options.ExposeExceptions = Environment.IsDevelopment();
             })
-            .AddWebSockets();
+            .AddWebSockets()
+            .AddDataLoader();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,8 +77,6 @@ namespace Server
                 GraphQLEndPoint = "/graphql",
                 Path = "/ui/voyager"
             });
-            //app.UseGraphQLWebSocket<OrdersSchema>("/graphql");
-            //app.UseGraphQLHttp<OrdersSchema>("/graphql");
         }
     }
 }
