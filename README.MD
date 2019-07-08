@@ -2,7 +2,7 @@
 A sample GraphQL order management endpoint using GraphQL for .NET. This is a more advanced version of the example I used in my course [API Development in .NET with GraphQL](https://www.lynda.com/NET-tutorials/API-Development-NET-GraphQL/664823-2.html)
 
 ## Running the sample
-* If usng Visual Studio, open `Orders-GraphQL.sln` build and run
+* If using Visual Studio, open `Orders-GraphQL.sln` build and run
 * On Mac/Linux go the `Server` folder and run `dotnet run -f netcoreapp2.0`
 
 ## Overview
